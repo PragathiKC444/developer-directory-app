@@ -5,10 +5,17 @@ const SearchFilter = ({
   setSearchTerm,
   roleFilter,
   setRoleFilter,
+  sort,
+  setSort,
   totalCount,
   filteredCount
 }) => {
   const roles = ['All', 'Frontend', 'Backend', 'Full-Stack'];
+  const sorts = [
+    { value: '', label: 'Relevance' },
+    { value: 'exp_asc', label: 'Experience: Low → High' },
+    { value: 'exp_desc', label: 'Experience: High → Low' }
+  ];
 
   return (
     <div className="bg-white rounded-2xl shadow-2xl p-6 mb-6">
@@ -58,6 +65,16 @@ const SearchFilter = ({
               <option key={role} value={role}>
                 {role}
               </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Sort */}
+        <div className="md:w-64">
+          <label htmlFor="sort" className="block text-sm font-semibold text-gray-700 mb-2">Sort</label>
+          <select id="sort" value={sort} onChange={(e) => setSort(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+            {sorts.map(s => (
+              <option key={s.value} value={s.value}>{s.label}</option>
             ))}
           </select>
         </div>
